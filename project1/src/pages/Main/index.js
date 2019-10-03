@@ -47,6 +47,10 @@ export default class Main extends Component {
     try {
       const { newRepo, repositories } = this.state;
 
+      const isRepository = repositories.find(r => r.name === newRepo);
+
+      if (isRepository) throw new Error('Repositório duplicado');
+
       const response = await api.get(`/repos/${newRepo}`);
 
       const data = {
