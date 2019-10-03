@@ -20,7 +20,9 @@ export const Container = styled.div`
   }
 `;
 
-export const Form = styled.form`
+export const Form = styled.form.attrs(props => ({
+  disabled: props.error,
+}))`
   margin-top: 30px;
   display: flex;
   flex-direction: row;
@@ -31,6 +33,13 @@ export const Form = styled.form`
     padding: 10px 15px;
     border-radius: 4px;
     font-size: 20px;
+    ${props =>
+      props.error &&
+      css`
+        flex: 1;
+        border: 1px solid #900;
+        border-radius: 4px;
+      `}
   }
 `;
 
